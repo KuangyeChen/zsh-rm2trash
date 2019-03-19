@@ -15,7 +15,7 @@ Write after a sad story of `rm -rf`.
     plugins=(zsh-rm2trash)
     ```
 ## Usage
-Trash directory set by `$ZSH_RM2TRASH_TRASH_DIR`, default to `$HOME/.trash`.
+Trash directory is set by `$ZSH_RM2TRASH_TRASH_DIR`, by default `$HOME/.Trash`, when in Mac OSX this is the same directory used by Finder, so the command works like dragging to Trash but without Put Back function (need to parse .DS_Store file).
 
 Command    | Description
 ---------- | -----------
