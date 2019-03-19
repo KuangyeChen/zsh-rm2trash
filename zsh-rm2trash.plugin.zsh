@@ -44,9 +44,16 @@ function _clear_trash() {
   fi
 } 
 
+function _cd_to_trash() {
+  _check_trash_dir
+
+  cd $ZSH_RM2TRASH_TRASH_DIR
+}
+
 ZSH_RM2TRASH_TRASH_DIR=$HOME/.Trash
 
 alias rm='_rm_to_trash'
 alias rm2trash='_rm_to_trash'
 alias lstrash='_list_trash'
 alias cleartrash='_clear_trash'
+alias cdtrash='_cd_to_trash'
