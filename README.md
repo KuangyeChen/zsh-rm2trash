@@ -22,4 +22,5 @@ Command    | Description
 rm         | alias rm to rm2trash
 rm2trash   | mv files to trash
 lstrash    | ls trash dir
+cdtrash    | cd to trash dir
 cleartrash | clear trash dir (real rm)
