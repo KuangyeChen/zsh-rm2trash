@@ -11,12 +11,20 @@ function _rm_to_trash() {
   _check_trash_dir
 
   declare arg
+  declare message
   for arg in $@; do
-    if ! [[ $arg == -* ]]; then
+    if [[ $arg == -* ]]; then continue; fi
+    
+    if [[ -L $arg ]]; then
+      message="Remove softlink $arg."
+      /bin/rm $arg
+    else
+      message="mv $arg to $ZSH_RM2TRASH_TRASH_DIR with timestamp."
       mv $arg $ZSH_RM2TRASH_TRASH_DIR/${arg##*/}_`date +%Y-%m-%d_%H-%M-%S`
-      if [[ $? == 0 ]]; then
-        echo -e "mv $arg to $ZSH_RM2TRASH_TRASH_DIR with timestamp."
-      fi
+    fi
+  
+    if [[ $? == 0 ]]; then
+      echo -e $message
     fi
   done
 }
