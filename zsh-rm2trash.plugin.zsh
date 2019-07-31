@@ -1,17 +1,13 @@
-declare -g ZSH_RM2TRASH_TRASH_DIR
-
 function _check_trash_dir() {
-  if ! [[ -d $ZSH_RM2TRASH_TRASH_DIR ]]; then
-    echo -e "\033[1mWARN:\033[0m $ZSH_RM2TRASH_TRASH_DIR not exists. Create trash directory $ZSH_RM2TRASH_TRASH_DIR."
-    mkdir -p $ZSH_RM2TRASH_TRASH_DIR
+  if ! [[ -d ${ZSH_RM2TRASH_TRASH_DIR} ]]; then
+    echo -e "\033[1mWARN:\033[0m ${ZSH_RM2TRASH_TRASH_DIR} not exists. Create trash directory ${ZSH_RM2TRASH_TRASH_DIR}."
+    mkdir -p ${ZSH_RM2TRASH_TRASH_DIR}
   fi
 }
 
 function _rm_to_trash() {
   _check_trash_dir
 
-  declare arg
-  declare message
   for arg in $@; do
     if [[ $arg == -* ]]; then continue; fi
     
@@ -32,21 +28,21 @@ function _rm_to_trash() {
 function _list_trash() {
   _check_trash_dir
 
-  ls -ahl $ZSH_RM2TRASH_TRASH_DIR 
+  ls -ahl ${ZSH_RM2TRASH_TRASH_DIR}
 }
 
 function _clear_trash() {
   _check_trash_dir
 
-  echo -e "Are you sure to delete all files in $ZSH_RM2TRASH_TRASH_DIR? [y/n]"
+  echo -e "Are you sure to delete all files in ${ZSH_RM2TRASH_TRASH_DIR}? [y/n]"
   echo -e "\033[91m\033[1mWARN: YOU CANNOT UNDO THIS.\033[0m\033[0m"
 
   declare ans
   read ans
 
   if [[ $ans =~ ^[Yy]{1}$ ]]; then
-    echo -e "Permanently deleting all files in $ZSH_RM2TRASH_TRASH_DIR."
-    /bin/rm -vrf $ZSH_RM2TRASH_TRASH_DIR/*
+    echo -e "Permanently deleting all files in ${ZSH_RM2TRASH_TRASH_DIR}."
+    /bin/rm -vrf ${ZSH_RM2TRASH_TRASH_DIR}/*
   else
     echo -e "Do nothing."
   fi
@@ -55,10 +51,10 @@ function _clear_trash() {
 function _cd_to_trash() {
   _check_trash_dir
 
-  cd $ZSH_RM2TRASH_TRASH_DIR
+  cd ${ZSH_RM2TRASH_TRASH_DIR}
 }
 
-ZSH_RM2TRASH_TRASH_DIR=$HOME/.Trash
+export ZSH_RM2TRASH_TRASH_DIR=${HOME}/.Trash
 
 alias rm='_rm_to_trash'
 alias rm2trash='_rm_to_trash'
