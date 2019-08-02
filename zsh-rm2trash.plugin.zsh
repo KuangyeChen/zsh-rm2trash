@@ -8,6 +8,8 @@ function _zsh_rm2trash_check_trash_dir() {
 function _zsh_rm2trash_rm_to_trash() {
   _zsh_rm2trash_check_trash_dir
 
+  local arg
+  local message
   for arg in ${@}; do
     if [[ ${arg} == -* ]]; then continue; fi
     
@@ -37,6 +39,7 @@ function _zsh_rm2trash_clear_trash() {
   echo -e "\033[91m\033[1mWARN: YOU CANNOT UNDO THIS.\033[0m\033[0m"
   echo -e "Are you sure to delete all files in ${ZSH_RM2TRASH_TRASH_DIR}? [y/n]"
 
+  local ans
   read ans
 
   if [[ ${ans} =~ ^[Yy]{1}$ ]]; then
