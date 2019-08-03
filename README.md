@@ -6,7 +6,7 @@ Write after a sad story of `rm -rf`.
 1. Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`)
 
     ```sh
-    git clone https://github.com/FieldMrFive/zsh-rm2trash ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-rm2trash
+    git clone https://github.com/KuangyeChen/zsh-rm2trash ${ZSH_CUSTOM}/plugins/zsh-rm2trash
     ```
 
 2. Add the plugin to the list of plugins for Oh My Zsh to load (inside `~/.zshrc`):
@@ -15,7 +15,7 @@ Write after a sad story of `rm -rf`.
     plugins=(zsh-rm2trash)
     ```
 ## Usage
-Trash directory is set by `$ZSH_RM2TRASH_TRASH_DIR`, by default `$HOME/.Trash`, when in Mac OSX this is the same directory used by Finder, so the command works like dragging to Trash but without Put Back function (need to parse .DS_Store file).
+Trash directory is set by `$ZSH_TRASH`, by default `$HOME/.Trash`, when in Mac OSX this is the same directory used by Finder, so the command works like dragging to Trash but without Put Back function (need to parse .DS_Store file).
 
 Command    | Description
 ---------- | -----------
