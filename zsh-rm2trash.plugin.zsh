@@ -1,6 +1,6 @@
 function _zsh_rm2trash_check_trash_dir() {
     if ! [[ -d ${ZSH_TRASH} ]]; then
-        echo -e "\033[1mWARN:\033[0m ${ZSH_TRASH} not exists. Create trash directory ${ZSH_TRASH}."
+        print "\033[1mWARN:\033[0m ${ZSH_TRASH} not exists. Create trash directory ${ZSH_TRASH}."
         mkdir -p ${ZSH_TRASH}
     fi
 }
@@ -22,7 +22,7 @@ function _zsh_rm2trash_rm_to_trash() {
         fi
   
         if [[ ${?} == 0 ]]; then
-            echo -e ${message}
+            print ${message}
         fi
     done
 }
@@ -36,17 +36,17 @@ function _zsh_rm2trash_list_trash() {
 function _zsh_rm2trash_clear_trash() {
     _zsh_rm2trash_check_trash_dir
 
-    echo -e "\033[91m\033[1mWARN: YOU CANNOT UNDO THIS.\033[0m\033[0m"
-    echo -e "Are you sure to delete all files in ${ZSH_TRASH}? [y/n]"
+    print "\033[91m\033[1mWARN: YOU CANNOT UNDO THIS.\033[0m\033[0m"
+    print "Are you sure to delete all files in ${ZSH_TRASH}? [y/n]"
 
     local ans
     read ans
 
     if [[ ${ans} =~ ^[Yy]{1}$ ]]; then
-        echo -e "Permanently deleting all files in ${ZSH_TRASH}."
+        print "Permanently deleting all files in ${ZSH_TRASH}."
         /bin/rm -vrf ${ZSH_TRASH}/* || true; /bin/rm -vrf ${ZSH_TRASH}/.* || true 
     else
-        echo -e "Do nothing."
+        print "Do nothing."
     fi
 } 
 
